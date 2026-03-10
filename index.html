@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZED-KITCHEN | طابونة 5×1</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:#f7f7f7;
+color:#333;
+}
+
+header{
+background:#e67e22;
+color:white;
+text-align:center;
+padding:25px 15px;
+}
+
+header h1{
+margin:0;
+font-size:28px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:20px;
+}
+
+/* SLIDER */
+
+.slider{
+position:relative;
+margin-bottom:25px;
+}
+
+.slide{
+display:none;
+width:100%;
+border-radius:12px;
+}
+
+.prev,.next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.4);
+color:white;
+border:none;
+font-size:26px;
+padding:8px 12px;
+cursor:pointer;
+border-radius:8px;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.price{
+font-size:30px;
+color:#e74c3c;
+font-weight:bold;
+text-align:center;
+margin-bottom:5px;
+}
+
+.free{
+color:green;
+font-size:18px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.features{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.features p{
+margin:6px 0;
+}
+
+form{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+}
+
+#btn{
+width:100%;
+padding:15px;
+background:#27ae60;
+color:white;
+border:none;
+font-size:20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+#btn:hover{
+background:#219150;
+}
+
+#msg{
+margin-top:15px;
+text-align:center;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#777;
+}
+
+/* MOBILE */
+
+@media (max-width:600px){
+
+header h1{
+font-size:22px;
+}
+
+.price{
+font-size:24px;
+}
+
+}
+
+</style>
+
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}; 
+  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+  ttq.load=function(e){
+  var n=document.createElement("script");
+  n.type="text/javascript";
+  n.async=true;
+  n.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e;
+  var s=document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(n,s);
+  };
+  ttq.load('D6NKNTRC77UDVRSELRHG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>ZED-KITCHEN 🔥 طابونة 5×1 🔥</h1>
+<p>عرض خاص بمناسبة شهر رمضان</p>
+</header>
+
+<div class="container">
+
+<div class="slider">
+
+<img class="slide" src="IMG_2.jpg">
+<img class="slide" src="IMG_3.jpg">
+
+<button class="prev" onclick="changeSlide(-1)">❮</button>
+<button class="next" onclick="changeSlide(1)">❯</button>
+
+</div>
+
+<div class="price">15000 DA</div>
+<div class="free">🚚 التوصيل مجاني لباب المنزل</div>
+
+<div class="features">
+<p>✔ طبخ تقليدي</p>
+<p>✔ جودة عالية</p>
+<p>✔ الدفع عند الاستلام</p>
+<p>✔ توصيل سريع 24-48 ساعة</p>
+</div>
+
+<form id="orderForm">
+
+<input name="name" placeholder="الاسم و اللقب" required>
+<input name="phone" type="tel" placeholder="رقم الهاتف" required>
+<input name="wilaya" placeholder="الولاية" required>
+<input name="commune" placeholder="البلدية" required>
+
+<button type="submit" id="btn">اطلب الآن</button>
+
+</form>
+
+<p id="msg"></p>
+
+</div>
+
+<footer>
+الدفع عند الاستلام | خدمة العملاء 24/24
+</footer>
+
+<script>
+
+/* SLIDER */
+
+let slideIndex = 0
+const slides = document.querySelectorAll(".slide")
+
+function showSlide(index){
+slides.forEach(s => s.style.display="none")
+slides[index].style.display="block"
+}
+
+function changeSlide(n){
+slideIndex += n
+if(slideIndex >= slides.length) slideIndex = 0
+if(slideIndex < 0) slideIndex = slides.length - 1
+showSlide(slideIndex)
+}
+
+function autoSlide(){
+slideIndex++
+if(slideIndex >= slides.length) slideIndex = 0
+showSlide(slideIndex)
+}
+
+showSlide(slideIndex)
+setInterval(autoSlide,3000)
+
+/* FORM */
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxhv7Oxu7kDtE9hat_mRbjj2cJc1iEbuMtXWUGGXiMng9O_odIZ5xxTiqSAywamS-1E/exec"
+
+const form=document.getElementById("orderForm")
+const msg=document.getElementById("msg")
+const button=document.getElementById("btn")
+
+form.addEventListener("submit",async e=>{
+
+e.preventDefault()
+
+button.disabled=true
+button.innerText="جاري الإرسال..."
+
+try{
+
+const response=await fetch(scriptURL,{
+method:"POST",
+body:new FormData(form)
+})
+
+if(response.ok){
+
+msg.innerHTML="✅ تم تسجيل طلبك بنجاح! سنتصل بك قريباً."
+form.reset()
+
+if(typeof ttq !== "undefined"){
+ttq.track('CompletePayment',{
+value:15000,
+currency:'DZD',
+content_name:'طابونة 5×1'
+})
+}
+
+}else{
+msg.innerHTML="❌ حدث خطأ في الإرسال."
+}
+
+}catch(error){
+msg.innerHTML="❌ تحقق من اتصال الإنترنت."
+}
+
+button.disabled=false
+button.innerText="اطلب الآن"
+
+})
+
+</script>
+
+</body>
+</html>
